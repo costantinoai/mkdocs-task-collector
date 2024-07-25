@@ -12,20 +12,20 @@
 
 Install the plugin using `pip`:
 
-'''
+```
 pip install mkdocs-task-collector
-'''
+```
 
 ## Configuration
 
 Add the `task_collector` plugin to your `mkdocs.yml` configuration file:
 
-'''
+```
 plugins:
   - search
   - task_collector:
       output_file: 'TaskList.md'
-'''
+```
 
 ## Usage
 
@@ -37,7 +37,7 @@ Suppose you have the following Markdown files:
 
 **`docs/example1.md`**:
 
-'''
+```
 # Example 1
 
 This is a test document.
@@ -45,21 +45,21 @@ This is a test document.
 TODO: Add more content here.
 
 NOTE: Review this section for accuracy.
-'''
+```
 
 **`docs/example2.md`**:
 
-'''
+```
 # Example 2
 
 PLACEHOLDER: Insert diagram here.
 
 TODO: Update the introduction.
-'''
+```
 
 After running `mkdocs build`, the plugin will generate a `TaskList.md` with the following content:
 
-'''
+```
 # Task List
 
 ## example1.md
@@ -69,7 +69,7 @@ After running `mkdocs build`, the plugin will generate a `TaskList.md` with the 
 ## example2.md
 + Line 5 - **PLACEHOLDER**: Insert diagram here.
 + Line 7 - **TODO**: Update the introduction.
-'''
+```
 
 ## Contributing
 
