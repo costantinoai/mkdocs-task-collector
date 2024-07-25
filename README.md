@@ -1,6 +1,6 @@
 # mkdocs-task-collector
 
-`mkdocs-task-collector` is a powerful MkDocs plugin designed to streamline your documentation workflow by automatically scanning your Markdown files for specific annotations like `TODO`, `NOTE`, and `PLACEHOLDER`. It generates a comprehensive and organized task list, making it easier to manage and track tasks, notes, and placeholders within your documentation.
+`mkdocs-task-collector` is a versatile MkDocs plugin designed to streamline your documentation workflow by automatically scanning your Markdown files for specific annotations like `TODO`, `NOTE`, and `PLACEHOLDER`. It generates a comprehensive and organized task list, making it easier to manage and track tasks, notes, and placeholders within your documentation.
 
 ![Plugin example functionality](https://github.com/costantinoai/mkdocs-task-collector/blob/main/assets/example.png)
 
