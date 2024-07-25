@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='mkdocs-task-collector',
-    version='0.1.1a',
+    version='0.1.1',
     description='A MkDocs plugin to collect TODO, NOTE, and PLACEHOLDER annotations.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='Andrea Costantino',
+    author_email='andreaivancostantino@outlook.it',
     url='https://github.com/costantinoai/mkdocs-task-collector',
     packages=find_packages(),
     include_package_data=True,
@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         'mkdocs.plugins': [
-            'task-collector = mkdocs_plugin.mkdocs_task_collector:TaskCollectorPlugin',
+            'task-collector = mkdocs_plugins.task_collector:TaskCollectorPlugin',
         ]
     },
     classifiers=[
