@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         'mkdocs.plugins': [
-            'task_collector = mkdocs_plugins.task_collector:TaskCollectorPlugin',
+            'task-collector = mkdocs_plugins.task_collector:TaskCollectorPlugin',
         ]
     },
     classifiers=[
