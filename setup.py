@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mkdocs-task-collector',
-    version='0.1.1',
+    version='0.1.1a',
     description='A MkDocs plugin to collect TODO, NOTE, and PLACEHOLDER annotations.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
