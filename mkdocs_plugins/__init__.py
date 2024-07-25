@@ -1,6 +1,2 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
+from .task_collector import TaskCollectorPlugin
 
-@author: costantino_ai
-"""
