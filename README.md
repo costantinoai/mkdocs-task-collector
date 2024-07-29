@@ -4,6 +4,11 @@
 
 ![Plugin example functionality](https://github.com/costantinoai/mkdocs-task-collector/blob/main/assets/example.png)
 
+## Roadmap
+
+TODO: tags should not be collected if wrapped in quotes (e.g., ``TODO``), because usualy this is what we do when we describe the tags (and not use them).
+TODO: make links in the Task list clickable (specific files, possibly lines?)
+
 ## Features
 
 - **Automated Annotation Scanning**: Effortlessly detects `TODO`, `NOTE`, and `PLACEHOLDER` annotations in your Markdown files, saving you time and ensuring no task is overlooked.
