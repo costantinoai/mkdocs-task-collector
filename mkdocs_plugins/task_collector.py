@@ -50,8 +50,15 @@ class TaskCollectorPlugin(BasePlugin):
         """
         Writes content to the specified file and ensures it's added to the list of site files without causing re-build loops.
         """
-        # Write the content to the file, only if there are changes
-        if not os.path.exists(output_filepath) or open(output_filepath, 'r').read() != content:
-            with open(output_filepath, 'w', encoding='utf-8') as f:
-                f.write(content)
+        try:
+            existing_content = ''
+            if os.path.exists(output_filepath):
+                with open(output_filepath, 'r', encoding='utf-8') as f:
+                    existing_content = f.read().replace('\r\n', '\n')
+
+            if existing_content != content.replace('\r\n', '\n'):
+                with open(output_filepath, 'w', encoding='utf-8') as f:
+                    f.write(content)
+        except IOError as e:
+            print(f"Error writing to {output_filepath}: {str(e)}")
 
