@@ -25,6 +25,7 @@ share/python-wheels/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+deploy_package.sh
 
 # Unit test / coverage reports
 htmlcov/
