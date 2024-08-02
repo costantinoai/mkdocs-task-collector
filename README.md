@@ -33,7 +33,7 @@ Add the `task_collector` plugin to your `mkdocs.yml` configuration file:
 plugins:
   - search
   - task_collector:
-      output_file: 'TaskList.md'
+      output_file: 'tasks-list.md'
 ```
 
 To ensure the generated task list is part of your documentation navigation, add it to the `nav` section in your `mkdocs.yml` file:
