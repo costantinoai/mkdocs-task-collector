@@ -32,7 +32,7 @@ Add the `task_collector` plugin to your `mkdocs.yml` configuration file:
 ```
 plugins:
   - search
-  - task_collector:
+  - task-collector:
       output_file: 'tasks-list.md'
 ```
 
