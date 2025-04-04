@@ -6,7 +6,6 @@
 
 ## Roadmap
 
-TODO: tags should not be collected if wrapped in quotes (e.g., ``TODO``), because usualy this is what we do when we describe the tags (and not use them).
 TODO: make links in the Task list clickable (specific files, possibly lines?)
 
 ## Features
