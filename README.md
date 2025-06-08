@@ -6,7 +6,7 @@
 
 ## Roadmap
 
-TODO: make links in the Task list clickable (specific files, possibly lines?)
+- [x] Make links in the task list clickable by pointing to the source file and line when `repo_url` is configured.
 
 ## Features
 
@@ -15,6 +15,8 @@ TODO: make links in the Task list clickable (specific files, possibly lines?)
 - **Seamless Integration**: Integrates flawlessly into the MkDocs build process, both locally and remotely (e.g., GitHub Pages), without requiring additional configuration.
 - **Automatic Deployment**: Ensures that your task list is always up-to-date and published on your website, provided it is referenced in the `nav` section of your `mkdocs.yml` file.
 - **Zero Configuration**: No extra configuration needed – simply add the plugin to your `mkdocs.yml` file, and you're ready to go.
+- **Configurable Keywords**: Specify which annotations to search for by setting the `keywords` option.
+- **Comment Pattern Exclusions**: Lines beginning with `# KEYWORD` or `% KEYWORD` are ignored so code snippets aren't treated as tasks.
 
 ## Installation
 
@@ -26,22 +28,24 @@ pip install mkdocs-task-collector
 
 ## Configuration
 
-Add the `task_collector` plugin to your `mkdocs.yml` configuration file:
+Below is a minimal `mkdocs.yml` showing how to configure the plugin and include
+the generated file in the navigation:
 
-```
+```yaml
+site_name: Example Docs
+
 plugins:
   - search
   - task-collector:
-      output_file: 'tasks-list.md'
-```
+      output_file: tasks-list.md
+      keywords:
+        - NOTE
+        - TODO
+        - PLACEHOLDER
 
-To ensure the generated task list is part of your documentation navigation, add it to the `nav` section in your `mkdocs.yml` file:
-
-```
 nav:
-
-    Home: index.md
-    Tasks: tasks-list.md
+  - Home: index.md
+  - Tasks: tasks-list.md
 ```
 
 ## Usage

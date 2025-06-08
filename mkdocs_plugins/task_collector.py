@@ -3,6 +3,7 @@ import os
 import logging
 from mkdocs.plugins import BasePlugin
 from mkdocs.config import config_options
+from mkdocs.structure.files import File
 
 class TaskCollectorPlugin(BasePlugin):
     """
@@ -12,6 +13,11 @@ class TaskCollectorPlugin(BasePlugin):
 
     config_scheme = (
         ('output_file', config_options.Type(str, default='TaskList.md')),
+        (
+            'keywords',
+            config_options.Type(list, default=['NOTE', 'TODO', 'PLACEHOLDER']),
+        ),
+        ('repo_branch', config_options.Type(str, default='main')),
     )
 
     def __init__(self):
@@ -29,8 +35,12 @@ class TaskCollectorPlugin(BasePlugin):
         Returns:
             The list of files, potentially modified.
         """
-        # Define the regex pattern to capture specific keywords not preceded or followed by a backtick
-        pattern = re.compile(r'(?<!`)\b(NOTE|TODO|PLACEHOLDER)\b(?!`)')
+        # Define the regex pattern based on configured keywords.
+        # Skip matches that are wrapped in backticks or preceded by
+        # comment markers like "% " or "# ".
+        keywords = [re.escape(k) for k in self.config.get('keywords', [])]
+        pattern = re.compile(
+            rf"(?<!`)(?<![%#]\s)\b({'|'.join(keywords)})\b(?!`)")
 
         # Get the output file name and path to avoid processing it
         output_filename = self.config['output_file']
@@ -51,8 +61,17 @@ class TaskCollectorPlugin(BasePlugin):
                     for i, line in enumerate(lines):
                         match = pattern.search(line)
                         if match:
-                            # Capture the entire line and store it under the respective file heading
-                            task = f"+ Line {i+1} - {line.strip()}"
+                            # Build a link to the repository if available
+                            repo_url = config.get('repo_url')
+                            link = None
+                            if repo_url:
+                                branch = self.config.get('repo_branch', 'main')
+                                link = f"{repo_url}/blob/{branch}/{file.src_path}#L{i+1}"
+                            line_text = line.strip()
+                            if link:
+                                task = f"+ Line {i+1} - [{line_text}]({link})"
+                            else:
+                                task = f"+ Line {i+1} - {line_text}"
                             tasks_by_file.setdefault(file.src_path, []).append(task)
                             self.logger.debug(f"Found task in {file.src_path}: {task}")
                 except IOError as e:
@@ -66,11 +85,21 @@ class TaskCollectorPlugin(BasePlugin):
 
         # Write to the output file
         self.write_output_file(output_filepath, content)
+
+        # Ensure the generated file is part of the build
+        if not files.get_file_from_path(output_filename):
+            file_obj = File(
+                output_filename,
+                config['docs_dir'],
+                config['site_dir'],
+                config['use_directory_urls'],
+            )
+            files.append(file_obj)
         return files
 
     def write_output_file(self, output_filepath, content):
         """
-        Write content to the specified file and ensure it's added to the list of site files.
+        Write content to the specified output file if it has changed.
 
         Args:
             output_filepath: The path where the output file should be written.

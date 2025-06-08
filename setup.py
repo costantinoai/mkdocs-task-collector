@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='mkdocs-task-collector',
-    version='0.1.14',  # Incrementing the version number
+    version='0.1.15',  # Incrementing the version number
     description='A MkDocs plugin to collect TODO, NOTE, and PLACEHOLDER annotations.',
     long_description=long_description,
     long_description_content_type='text/markdown',
